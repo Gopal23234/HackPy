@@ -20,4 +20,3 @@ Hackpy is a Django-based web application that clones the functionality of Hacker
 - Clone the code
 - Install the requirements using pip install requirements.txt
 - Run 'python3 manage.py runserver'
-- Check commands in Makefile
