@@ -51,6 +51,17 @@ INSTALLED_APPS = [
     'django_celery_beat',
     
 ]
+DATABASES = {
+	'default': {
+		'ENGINE': 'django.db.backends.mysql',
+		'NAME': os.getenv('MASTER_DB_NAME',''),
+		'USER': os.getenv('MASTER_DB_USER',''),
+		'PASSWORD': os.getenv('MASTER_DB_PASSWORD',''),
+		'HOST': os.getenv('MASTER_DB_HOST','localhost'),  # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+		'PORT': '3306',  # Set to empty string for default.
+		# 'OPTIONS': {'charset': 'utf8mb4'},
+	}
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
