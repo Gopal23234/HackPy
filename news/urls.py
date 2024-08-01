@@ -23,6 +23,7 @@ urlpatterns = [
     path('comments/', views.comments_view, name='comments_view'),
     path('submit_link/', views.submit_link, name='submit_link'),
 
+
     path('comment/success/', comment_success_view, name='comment_success'),
     path('link/success/', link_success_view, name='link_success'),
 
