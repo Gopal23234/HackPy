@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from celery.schedules import crontab
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 CELERY_BEAT_SCHEDULE = {
     'crawl-hackernews-every-hour': {
         'task': 'news.tasks.crawlhackernews',
@@ -22,14 +25,15 @@ CELERY_BEAT_SCHEDULE = {
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(_file_).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ezt-z@^$$wt@-tt$#lsoiv91$meq#jjf9s=e@s=4%2#d#)7h)f'
+SECRET_KEY = os.getenv('SECRET_KEY',"this_is_a_deafult_secret_key")
+# SECRET_KEY = 'django-insecure-ezt-z@^$$wt@-tt$#lsoiv91$meq#jjf9s=e@s=4%2#d#)7h)f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -51,6 +55,7 @@ INSTALLED_APPS = [
     'django_celery_beat',
     
 ]
+# print("password",os.getenv("MASTER_DB_USER"))
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.mysql',
@@ -62,6 +67,7 @@ DATABASES = {
 		# 'OPTIONS': {'charset': 'utf8mb4'},
 	}
 }
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -167,6 +173,3 @@ LOGGING = {
         'level': 'DEBUG',
     },
 }
-
-
-
