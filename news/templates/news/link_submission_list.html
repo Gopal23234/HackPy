@@ -1,9 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Link Submissions</title>
-    <style>
-        body {
+{% extends "base.html" %}
+
+{% block title %}Link Submissions{% endblock %}
+
+{% block content %}
+<h1>Link Submissions</h1>
+<div style="text-align: center;">
+    <a href="/news/submit_link"><button>Submit a Link</button></a>
+</div>
+<ul>
+    {% for link in links %}
+        <li>
+            <h2>{{ link.title }}</h2>
+            <p><a href="{{ link.url }}">{{ link.url }}</a></p>
+            <p>{{ link.description }}</p>
+            <p>Submitted by: {{ link.user.username }}</p>
+            <p>Submitted on: {{ link.created_at }}</p>
+        </li>
+    {% endfor %}
+</ul>
+<style>
+    body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
@@ -59,23 +75,5 @@
         li a {
             color: #0066cc;
         }
-    </style>
-</head>
-<body>
-    <h1>Link Submissions</h1>
-    <div style="text-align: center;">
-        <a href="/news/submit_link"><button>Submit a Link</button></a>
-    </div>
-    <ul>
-        {% for link in links %}
-            <li>
-                <h2>{{ link.title }}</h2>
-                <p><a href="{{ link.url }}">{{ link.url }}</a></p>
-                <p>{{ link.description }}</p>
-                <p>Submitted by: {{ link.user.username }}</p>
-                <p>Submitted on: {{ link.created_at }}</p>
-            </li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+</style>
+{% endblock %}

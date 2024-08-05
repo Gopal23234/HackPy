@@ -1,79 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News Detail</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 0;
-        }
+{% extends "base.html" %}
 
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            background: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            margin-top: 20px;
-        }
+{% block title %}News Detail{% endblock %}
 
-        h1 {
-            color: #333;
-            border-bottom: 2px solid #e2e2e2;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
+{% block content %}
+<div class="container">
+    <h1>News Detail</h1>
+    <p>News ID: {{ news_id }}</p>
+    {% load humanize %}
 
-        .news-item {
-            border-bottom: 1px solid #e2e2e2;
-            padding: 10px 0;
-            margin-bottom: 10px;
-        }
-
-        .news-item a {
-            text-decoration: none;
-            color: #007BFF;
-            font-size: 1.2em;
-        }
-
-        .news-item a:hover {
-            text-decoration: underline;
-        }
-
-        .news-meta {
-            color: #555;
-            font-size: 0.9em;
-        }
-
-        .news-meta a {
-            color: #007BFF;
-            text-decoration: none;
-        }
-
-        .news-meta a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>News Detail</h1>
-        <p>News ID: {{ news_id }}</p>
-        {% load humanize %}
-
-        <div class="news-item">
-            <a href="{{ news_item.url }}">{{ news_item.title }}</a>
-            <p class="news-meta">
-                {{ news_item.points }} points by {{ news_item.user.username }} | 
-                {{ news_item.created_at|naturaltime }} | 
-                <a href="{% url 'news_detail' news_item.id %}">{{ news_item.comments.count }} comments</a>
-            </p>
-        </div>
+    <div class="news-item">
+        <a href="{{ news_item.url }}">{{ news_item.title }}</a>
+        <p class="news-meta">
+            {{ news_item.points }} points by {{ news_item.user.username }} | 
+            {{ news_item.created_at|naturaltime }} | 
+            <a href="{% url 'news_detail' news_item.id %}">{{ news_item.comments.count }} comments</a>
+        </p>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}
